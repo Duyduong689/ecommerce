@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ChangeEvent, FC, useState } from "react"
+import { ChangeEvent, FC } from "react"
 
 type Props = {
     roomTypeFilter: string,

@@ -1,22 +1,19 @@
 'use client';
 
-import useSWR from 'swr';
-import { FaSignOutAlt } from 'react-icons/fa';
-import Image from 'next/image';
 import axios from 'axios';
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
+import { FaSignOutAlt } from 'react-icons/fa';
+import useSWR from 'swr';
 
+import Chart from '@/components/Chart/Chart';
+import Table from '@/components/Table/Table';
 import { getUserBookings } from '@/libs/apis';
 import { User } from '@/models/user';
-import LoadingSpinner from '../../loading';
 import { useState } from 'react';
 import { BsJournalBookmarkFill } from 'react-icons/bs';
 import { GiMoneyStack } from 'react-icons/gi';
-import Table from '@/components/Table/Table';
-import Chart from '@/components/Chart/Chart';
-import RatingModal from '@/components/RatingModal/RatingModal';
-import BackDrop from '@/components/BackDrop/BackDrop';
-import toast from 'react-hot-toast';
+import LoadingSpinner from '../../loading';
 import React from 'react';
 
 const UserDetails = (props: { params: { id: string } }) => {
@@ -28,41 +25,43 @@ const UserDetails = (props: { params: { id: string } }) => {
     'bookings' | 'amount' | 'ratings'
   >('bookings');
   const [roomId, setRoomId] = useState<string | null>(null);
+  console.log("🚀 ~ UserDetails ~ roomId:", roomId)
   const [isRatingVisible, setIsRatingVisible] = useState(false);
-  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
-  const [ratingValue, setRatingValue] = useState<number | null>(0);
-  const [ratingText, setRatingText] = useState('');
+  console.log("🚀 ~ UserDetails ~ isRatingVisible:", isRatingVisible)
+  // const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+  // const [ratingValue, setRatingValue] = useState<number | null>(0);
+  // const [ratingText, setRatingText] = useState('');
 
   const toggleRatingModal = () => setIsRatingVisible(prevState => !prevState);
 
-  const reviewSubmitHandler = async () => {
-    if (!ratingText.trim().length || !ratingValue) {
-      return toast.error('Please provide a rating text and a rating');
-    }
+  // const reviewSubmitHandler = async () => {
+  //   if (!ratingText.trim().length || !ratingValue) {
+  //     return toast.error('Please provide a rating text and a rating');
+  //   }
 
-    if (!roomId) toast.error('Id not provided');
+  //   if (!roomId) toast.error('Id not provided');
 
-    setIsSubmittingReview(true)
+  //   setIsSubmittingReview(true)
 
-    try {
-      const { data } = await axios.post('/api/users', {
-        reviewText: ratingText,
-        ratingValue,
-        roomId,
-      });
-      console.log(data);
-      toast.success('Review Submitted');
-    } catch (error) {
-      console.log(error);
-      toast.error('Review Failed');
-    } finally {
-      setRatingText('');
-      setRatingValue(null);
-      setRoomId(null);
-      setIsSubmittingReview(false);
-      setIsRatingVisible(false);
-    }
-  };
+  //   try {
+  //     const { data } = await axios.post('/api/users', {
+  //       reviewText: ratingText,
+  //       ratingValue,
+  //       roomId,
+  //     });
+  //     console.log(data);
+  //     toast.success('Review Submitted');
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error('Review Failed');
+  //   } finally {
+  //     setRatingText('');
+  //     setRatingValue(null);
+  //     setRoomId(null);
+  //     setIsSubmittingReview(false);
+  //     setIsRatingVisible(false);
+  //   }
+  // };
 
   const fetchUserBooking = async () => getUserBookings(userId);
   const fetchUserData = async () => {
