@@ -15,15 +15,15 @@ const Footer = () => {
                         <p>123 Road</p>
                         <div className="flex items-center py-4">
                             <BsFillSendFill />
-                            <p className="ml-2">duyduong689</p>
+                            <p className="ml-2">duyduong365900it@gmail.com</p>
                         </div>
                         <div className="flex items-center ">
                             <BsTelephoneOutbound />
-                            <p className="ml-2">000-000-00</p>
+                            <p className="ml-2">0799608210</p>
                         </div>
                         <div className="flex items-center pt-4 ">
                             <BiMessageDetail />
-                            <p className="ml-2">duyduong689</p>
+                            <p className="ml-2">duyduong365900it@gmail.com</p>
                         </div>
                     </div>
                     <div className="flex-1 md:text-right">

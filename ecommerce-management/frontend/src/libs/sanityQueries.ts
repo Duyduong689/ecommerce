@@ -42,8 +42,7 @@ export const getRoomQuery = groq`*[_type == "hotelRoom" && slug.current == $slug
     specialNote
 }`;
 
-export const getUserBookingsQuery = groq`*[_type == "booking" && user._ref == $userId][0] 
-{
+export const getUserBookingsQuery = groq`*[_type == 'booking' && user._ref == $userId] {
     _id,
     hotelRoom -> {
         _id,
@@ -57,8 +56,8 @@ export const getUserBookingsQuery = groq`*[_type == "booking" && user._ref == $u
     adults,
     children,
     totalPrice,
-    discount,
-}`
+    discount
+}`;
 
 export const getUserDataQuery = groq`*[_type == 'user' && _id == $userId][0] {
     _id,

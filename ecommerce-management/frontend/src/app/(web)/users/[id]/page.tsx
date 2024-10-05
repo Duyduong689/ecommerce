@@ -25,9 +25,7 @@ const UserDetails = (props: { params: { id: string } }) => {
     'bookings' | 'amount' | 'ratings'
   >('bookings');
   const [roomId, setRoomId] = useState<string | null>(null);
-  console.log("🚀 ~ UserDetails ~ roomId:", roomId)
   const [isRatingVisible, setIsRatingVisible] = useState(false);
-  console.log("🚀 ~ UserDetails ~ isRatingVisible:", isRatingVisible)
   // const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   // const [ratingValue, setRatingValue] = useState<number | null>(0);
   // const [ratingText, setRatingText] = useState('');

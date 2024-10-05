@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SCERET_KEY as string, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: '2024-06-20'
 })
 
@@ -36,11 +36,10 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions)
 
     if (!session)
-        return new NextResponse("Authentication required,", { status: 400 })
+        return new NextResponse("Authentication required,", { status: 401 })
 
     const userId = session.user.id;
 
-    console.log("🚀 ~ POST ~ checkoutDate:", checkoutDate)
     const formattedCheckoutDate = checkoutDate.split("T")[0];
     const formattedCheckinDate = checkinDate.split("T")[0];
 
