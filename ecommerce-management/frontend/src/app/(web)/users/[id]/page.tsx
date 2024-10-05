@@ -26,6 +26,9 @@ const UserDetails = (props: { params: { id: string } }) => {
   >('bookings');
   const [roomId, setRoomId] = useState<string | null>(null);
   const [isRatingVisible, setIsRatingVisible] = useState(false);
+  console.log("🚀 ~ UserDetails ~ roomId:", roomId)
+  console.log("🚀 ~ UserDetails ~ isRatingVisible:", isRatingVisible)
+  
   // const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   // const [ratingValue, setRatingValue] = useState<number | null>(0);
   // const [ratingText, setRatingText] = useState('');
@@ -201,5 +204,4 @@ const UserDetails = (props: { params: { id: string } }) => {
     </div>
   );
 };
-
 export default UserDetails;

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
@@ -11,7 +11,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: '2024-06-20',
 });
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     const reqBody = await req.text();
     const sig = req.headers.get('stripe-signature');
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -21,17 +21,15 @@ export async function POST(req: Request, res: Response) {
     try {
         if (!sig || !webhookSecret) return;
         event = stripe.webhooks.constructEvent(reqBody, sig, webhookSecret);
-    } catch (error: any) {
-        return new NextResponse(`Webhook Error: ${error.message}`, { status: 500 });
+    } catch (error) {
+        return new NextResponse(`Webhook Error ${error}`, { status: 500 });
     }
 
     // load our event
     switch (event.type) {
         case checkout_session_completed:
             const session = event.data.object;
-
             const {
-                // @ts-ignore
                 metadata: {
                     adults,
                     checkinDate,
@@ -44,8 +42,6 @@ export async function POST(req: Request, res: Response) {
                     totalPrice,
                 },
             } = session;
-            
-            console.log("create booking heree ````````````````");
 
             await createBooking({
                 adults: Number(adults),
