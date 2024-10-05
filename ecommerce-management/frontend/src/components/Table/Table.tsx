@@ -25,7 +25,7 @@ const Table: FC<Props> = ({ bookingDetails, setRoomId, toggleRatingModal }) => {
             <th className='px-6 py-3'>Discount</th>
             <th className='px-6 py-3'>No. Days Booked</th>
             <th className='px-6 py-3'>Days Left</th>
-            <th className='px-6 py-3'></th>
+            {/* <th className='px-6 py-3'></th> */}
           </tr>
         </thead>
         <tbody>
@@ -47,7 +47,7 @@ const Table: FC<Props> = ({ bookingDetails, setRoomId, toggleRatingModal }) => {
               <td className='px-6 py-4'>{booking.discount}</td>
               <td className='px-6 py-4'>{booking.numberOfDays}</td>
               <td className='px-6 py-4'>0</td>
-              <td className='px-6 py-4'>
+              {/* <td className='px-6 py-4'>
                 <button
                   onClick={() => {
                     setRoomId(booking.hotelRoom._id);
@@ -57,7 +57,7 @@ const Table: FC<Props> = ({ bookingDetails, setRoomId, toggleRatingModal }) => {
                 >
                   Rate
                 </button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
