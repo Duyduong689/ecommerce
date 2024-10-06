@@ -9,7 +9,7 @@ import { MdDarkMode, MdOutlineLightMode } from "react-icons/md"
 const Header = () => {
     const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
 
     return (
         <header className=" py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between">
@@ -50,6 +50,14 @@ const Header = () => {
                 </ul>
             </div>
             <ul className=" flex items-center justify-between w-full md:w-1/3 mt-4">
+                {
+                    status != "authenticated" &&
+                    <li className=" hover:-translate-y-2 duration-500 transition-all">
+                        <Link href={"/auth"}>
+                            Login
+                        </Link>
+                    </li>
+                }
                 <li className=" hover:-translate-y-2 duration-500 transition-all">
                     <Link href={"/"}>
                         Home

@@ -13,6 +13,7 @@ import { useState } from "react"
 import toast from "react-hot-toast"
 import axios from "axios"
 import { getStripe } from "@/libs/stripe"
+import { useSession } from "next-auth/react"
 const RoomDetails = (props: { params: { slug: string } }) => {
     const { params: { slug } } = props
 
@@ -20,6 +21,7 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     const [checkoutDate, setCheckoutDate] = useState<Date | null>(null)
     const [adults, setAdults] = useState(1)
     const [numOfChildren, setNumOfChildren] = useState(0)
+    const { status } = useSession();
 
 
     async function fetchData() {
@@ -53,6 +55,9 @@ const RoomDetails = (props: { params: { slug: string } }) => {
             return toast.error("Please provide checkin/ checkout Date")
         if (checkinDate > checkoutDate)
             return toast.error("Please choose a valid checkin period")
+        if (status == "unauthenticated") {
+            return toast.error("Please login your account before start booking")
+        }
         const numberOfDays = calNoOfDays()
 
         const hotelRoomSlug = room.slug.current
