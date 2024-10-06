@@ -4,7 +4,7 @@ import { BsFillSendFill, BsTelephoneOutbound } from "react-icons/bs"
 
 const Footer = () => {
     return (
-        <footer className=" mt-16">
+        <footer id="contact" className=" mt-16">
             <div className="container mx-auto px-4">
                 <Link href={"/"} className=" font-black text-tertiary-dark">
                     Hotel
@@ -12,7 +12,7 @@ const Footer = () => {
                 <h4 className=" font-semibold text-[40px] py-6">Contact</h4>
                 <div className=" flex flex-wrap gap-16 items-center justify-between">
                     <div className="flex-1">
-                        <p>123 Road</p>
+                        <p>Binh Tan District, Ho Chi Minh City</p>
                         <div className="flex items-center py-4">
                             <BsFillSendFill />
                             <p className="ml-2">duyduong365900it@gmail.com</p>
