@@ -49,7 +49,7 @@ const Rooms = () => {
     return (
         <div className=" container mx-auto pt-10">
             <Search roomTypeFilter={roomTypeFilter} searchQuery={searchQuery} setRoomTypeFilter={setRoomTypeFilter} setSearchQuery={setSearchQuery} />
-            <div className=" flex mt-20 justify-between flex-wrap ">
+            <div className=" flex mt-20 gap-[20px] flex-wrap ">
                 {filteredRooms.map(room => (
                     <RoomsCard key={room._id} room={room} />
                 ))}
